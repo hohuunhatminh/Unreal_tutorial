@@ -29,7 +29,7 @@ void AItem1::BeginPlay()
 	// }
 	UWorld *World = GetWorld();
 	SetActorLocation (FVector(7310.f,-6295.f,-10235.0));
-	SetActorRotation(FRotator(0.f,45.f,0.f));
+	SetActorRotation(FRotator(0.f,0.f,0.f));
 	FVector Location = GetActorLocation();
 	
 	if (World)
@@ -41,6 +41,17 @@ void AItem1::BeginPlay()
 		
 	}
 }
+
+float AItem1::TransformedSin()
+{
+	return Amplitude*FMath::Sin(RunningTime*TimeConstant);
+}
+
+float AItem1::TransformedCos()
+{
+	return Amplitude*FMath::Cos(RunningTime*TimeConstant);
+}
+
 //add debug sphere
 
 
@@ -49,9 +60,9 @@ void AItem1::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	RunningTime += DeltaTime;
-	float DeltaZ = Amplitude*FMath::Sin(RunningTime*TimeConstant);
-	FVector Movement(0.F,0.f,DeltaZ);
-	AddActorWorldOffset(Movement);
+	//float DeltaZ = Amplitude*FMath::Sin(RunningTime*TimeConstant);
+	//FVector Movement(0.F,0.f,DeltaZ);
+	//AddActorWorldOffset(Movement);
 	//AddActorWorldRotation(FRotator(0.f,0.f,-45.f*DeltaTime));
 	DrawDebugSphere(GetWorld(),GetActorLocation(),25.f,24,FColor::Red,false);
 	DrawDebugLine(GetWorld(),GetActorLocation(),GetActorLocation()+GetActorForwardVector()*100.f,FColor::Red,false,-1.f,0,1.f);

@@ -18,11 +18,16 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	UFUNCTION(BlueprintPure)
+	float TransformedSin();
+	UFUNCTION(BlueprintPure)
+	float TransformedCos();
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 private:
+	UPROPERTY(VisibleAnywhere)
 	float RunningTime;
 	UPROPERTY(EditAnywhere)
 	float Amplitude = 2.5f;//độ sóng
