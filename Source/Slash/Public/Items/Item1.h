@@ -14,7 +14,8 @@ class SLASH_API AItem1 : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AItem1();
-
+	
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -22,7 +23,8 @@ protected:
 	float TransformedSin();
 	UFUNCTION(BlueprintPure)
 	float TransformedCos();
-	
+	template <typename T>
+	T Avg(T First, T Second);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -30,7 +32,15 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	float RunningTime;
 	UPROPERTY(EditAnywhere)
-	float Amplitude = 2.5f;//độ sóng
+	float Amplitude = 1.f;//độ sóng
 	float TimeConstant = 1.f;//thời gian đi hết 1 chu kỳ (đi từ điểm đầu đến cuối và quay lại điểm đầu )
-	
+	float Speed= 5.f;
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* ItemMesh;
 	};
+template<typename T>
+inline T AItem1::Avg(T First, T Second)
+{
+	return (First + Second) / 2;
+}
+
